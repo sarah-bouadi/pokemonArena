@@ -18,7 +18,7 @@ describe('Battle', () => {
             type: PokemonType.Fire
         })
         it('should make pikachu attack first',()=>{
-            expect(Battle.whoAttackFirst(pok1, pok2)).toBe(pok1)
+            expect(Battle.whoAttackFirst(pok1, pok2)).toBe(null)
         });
         it('should make pikachu a winner', ()=>{
             expect(Battle.attack(pok1, pok2)).toBeTruthy()
@@ -44,7 +44,7 @@ describe('Battle', () => {
             type: PokemonType.Fire
         })
         it('should make pikachu attack first',()=>{
-            expect(Battle.whoAttackFirst(pok2, pok1)).toBe(pok2)
+            expect(Battle.whoAttackFirst(pok2, pok1)).toBe(null)
         });
         it('should make bulbizarre a winner', ()=>{
             expect(Battle.attack(pok2, pok1)).toBeTruthy()
