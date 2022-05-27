@@ -1,0 +1,15 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+<div class="app-pokemon" [ngClass]="{inBattle: isInBattle}">
+  <!--<p>{{ 33425564.34214 | number}}</p>-->
+<!--  <p>{{ 33425564.36214 | number: '1.0-1'}}</p>-->
+<!--  <p>{{ 0.3367 | percent: '1.0-2'}}</p>-->
+<!--  <p>{{ 342.3367 | currency: 'EUR' : 'code'}}</p>-->
+  <h2>{{pokemon.name | uppercase }}</h2>
+  <p><strong>Today date</strong> {{todayDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>
+  <p><strong>Pokemon Type:</strong> {{pokemon.type}}</p>
+  <button (click)="onViewPokemon()">VIEW</button>
+</div>
+
