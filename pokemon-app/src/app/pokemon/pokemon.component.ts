@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Pokemon} from "../models/pokemon.model";
+import {PokemonService} from "../services/pokemon.service";
 
 @Component({
   selector: 'app-pokemon',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pokemon.component.css']
 })
 export class PokemonComponent implements OnInit {
+  pikachu!: Pokemon;
+  logPikachu!: string;
 
-  constructor() { }
+  constructor(private pokemonService: PokemonService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.pikachu = this.pokemonService.getPokemonById(1);
+    this.logPikachu = this.pokemonService.logPokemon(this.pikachu);
   }
 
 }
