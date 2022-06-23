@@ -4,6 +4,7 @@ import {Pokemon, PokemonType} from "../models/pokemon.model";
 @Injectable({
   providedIn: 'root' // Explain to angular that this service is used once for the whole app
 })
+
 export class PokemonService{
     pokemons: Pokemon[] = [
       {
@@ -62,9 +63,4 @@ export class PokemonService{
     logPokemon(pokemon: Pokemon): string{
           return "<" + pokemon.name + ">:<"+ pokemon.HP +">PV";
     }
-
-   log(target: any, propertyKey: string): any {
-    console.log(`Person with default message ${target[propertyKey]}`);
-  }
-
 }
