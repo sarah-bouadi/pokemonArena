@@ -17,4 +17,7 @@ export class LandingPageComponent implements OnInit {
       this.router.navigateByUrl('pokemons');
   }
 
+    onChoosePokemon() {
+      this.router.navigateByUrl('menu');
+    }
 }

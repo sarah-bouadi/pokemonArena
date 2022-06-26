@@ -2,14 +2,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
-<div class="app-pokemon" [ngClass]="{inBattle: isInBattle}">
-  <!--<p>{{ 33425564.34214 | number}}</p>-->
-<!--  <p>{{ 33425564.36214 | number: '1.0-1'}}</p>-->
-<!--  <p>{{ 0.3367 | percent: '1.0-2'}}</p>-->
-<!--  <p>{{ 342.3367 | currency: 'EUR' : 'code'}}</p>-->
-  <h2>{{pokemon.name | uppercase }}</h2>
-  <p><strong>Today date</strong> {{todayDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>
-  <p><strong>Pokemon Type:</strong> {{pokemon.type}}</p>
-  <button (click)="onViewPokemon()">VIEW</button>
-</div>
+<!--<div class="app-pokemon" [ngClass]="{inBattle: isInBattle}" [ngClass]="{isPokemonSelected: isPokemonSelected}">-->
+<!--  <h2>{{pokemon.name | uppercase }}</h2>-->
+<!--  <p><strong>Today date</strong> {{todayDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>-->
+<!--  <p><strong>Pokemon Type:</strong> {{pokemon.type}}</p>-->
+<!--  <button (click)="onViewPokemon()">VIEW</button>-->
+<!--  <button mdbBtn color="primary (click)=onSelectedPokemon()">SELECT</button>-->
+<!--  <input type="radio" id="opponent-first-bulbasaur" name="opponent-first" value="bulbasaur">-->
+<!--</div>-->
+
+
+<ng-container *ngIf="pokemonIndex===1">
+  <div >
+    <input type="radio" id="fighter_one_{{pokemon.id}}" name="fighter_one" value="{{pokemon.name}}" (click)="onSelectPokemon(pokemon)">
+    <label for="fighter_one_{{pokemon.id}}">
+      <img src="{{pokemon.imageUrl}}" alt="{{pokemon.name}}">
+      {{pokemon.name}}
+    </label>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="pokemonIndex===2">
+  <div >
+    <input type="radio" id="fighter_two_{{pokemon.id}}" name="fighter_two" value="{{pokemon.name}}" (click)="onSelectPokemon(pokemon)">
+    <label for="fighter_two_{{pokemon.id}}">
+      <img src="{{pokemon.imageUrl}}" alt="{{pokemon.name}}">
+      {{pokemon.name}}
+    </label>
+  </div>
+</ng-container>
+
 

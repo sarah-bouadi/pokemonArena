@@ -1,1 +1,11 @@
-<app-pokemon *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-pokemon>
+<!--<app-pokemon *ngFor="let pokemon of pokemons" [pokemon]="pokemon" [pokemonIndex]="this.pokemonIndex">-->
+<!--</app-pokemon>-->
+
+<div class="pokemon-list-container">
+    <label *ngFor="let pokemon of pokemons">
+        <app-pokemon [pokemon]="pokemon" [pokemonIndex]="this.pokemonIndex">
+        </app-pokemon>
+    </label>
+</div>
+
+

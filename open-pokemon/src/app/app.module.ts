@@ -10,6 +10,9 @@ import { HeaderComponent } from './header/header.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SinglePokemonComponent } from './single-pokemon/single-pokemon.component';
+import { MenuComponent } from './menu/menu.component';
+import {FormsModule} from "@angular/forms";
+import { BattleComponent } from './battle/battle.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,15 @@ import { SinglePokemonComponent } from './single-pokemon/single-pokemon.componen
     PokemonListComponent,
     HeaderComponent,
     LandingPageComponent,
-    SinglePokemonComponent
+    SinglePokemonComponent,
+    MenuComponent,
+    BattleComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' }
   ],

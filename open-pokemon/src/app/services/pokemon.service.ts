@@ -9,7 +9,7 @@ export class PokemonService{
       {
         id: 'pikachu',
         name: 'Pikachu',
-        imageUrl: "https://neoplaylist.s3.amazonaws.com/wp-content/uploads/2021/05/14174342/Detective-Pikachu-Featured.jpg",
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/528/528098.png",
         attack: 7,
         speed: 5,
         HP: 100,
@@ -20,7 +20,7 @@ export class PokemonService{
       {
         id: 'salameck',
         name: 'salameck',
-        imageUrl: "https://www.pokepedia.fr/images/thumb/7/7b/Bulbizarre-PGL.png/120px-Bulbizarre-PGL.png",
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/188/188989.png",
         attack: 6,
         speed: 3,
         HP: 100,
@@ -30,7 +30,7 @@ export class PokemonService{
       {
         id: 'bulbizarre',
         name: 'bulbizarre',
-        imageUrl: "https://images.cults3d.com/blGH584_XH56Qt8GGoT3LFl2jS4=/516x516/https://files.cults3d.com/uploaders/13649867/illustration-file/d872dc46-15b9-48f5-b2d3-0d093f082a19/Salameche_LetsGo.jpg",
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/188/188990.png",
         attack: 5,
         speed: 4,
         HP: 100,
@@ -38,6 +38,16 @@ export class PokemonService{
         nb_damaged: 0
       }
     ];
+
+    pokemon1!: Pokemon;
+    pokemon2!: Pokemon;
+
+    setPokemon1(pok1: Pokemon): void{
+      this.pokemon1 = pok1;
+    }
+    setPokemon2(pok2: Pokemon): void{
+      this.pokemon2 = pok2;
+    }
 
     getAllPokemons(): Pokemon[]{
       return this.pokemons;

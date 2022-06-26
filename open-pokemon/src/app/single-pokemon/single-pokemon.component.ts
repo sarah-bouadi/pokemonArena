@@ -22,7 +22,8 @@ export class SinglePokemonComponent implements OnInit {
 
   ngOnInit() {
     this.pokemonId = this.route.snapshot.params['id'];
-    this.pokemon = this.pokemonService.getPokemonById(this.pokemonId);    this.pokemonStatus = 'Mmmm';
+    this.pokemon = this.pokemonService.getPokemonById(this.pokemonId);
+    this.pokemonStatus = 'Mmmm';
     this.isInBattle = false;
     this.damageActionButtonText = 'increaseDamage';
     this.todayDate = Date.now()

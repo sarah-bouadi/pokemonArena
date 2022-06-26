@@ -8,9 +8,7 @@
   margin: 20px auto;
   padding: 10px 30px;
   box-shadow: lightgray 4px 4px 20px;
-  img {
-    width: 100%;
-  }
+
   h2 {
     margin-bottom: 0;
   }
@@ -45,4 +43,62 @@
       box-shadow: #ff6565 0 0 5px;
     }
   }
+}
+
+.pokemonSelected {
+  background-color: rgba(#ffa122, 0.4);
+  color: #000000;
+  button {
+    box-shadow: #ec0184 3px 3px 7px;
+    color: #ff0a0a;
+    &:active {
+      box-shadow: #ff6565 0 0 5px;
+    }
+  }
+}
+
+/* HIDE RADIO */
+[type=radio] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: relative;
+  left: -9000px;
+}
+
+/* IMAGE STYLES */
+[type=radio] + label {
+  cursor: pointer;
+}
+
+///* CHECKED STYLES */
+//[type=radio]:checked + img {
+//  outline: 2px solid #f00;
+//}
+
+label {
+  width: 140px;
+  height: 140px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  transition: all 0.3s ease 0s;
+  background: #d0d0d0;
+}
+
+
+input:checked + label{
+  background: #858585;
+}
+
+img {
+  max-width: 25%;
+  height: auto;
 }
