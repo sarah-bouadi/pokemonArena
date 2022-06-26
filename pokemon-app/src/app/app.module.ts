@@ -4,14 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { BattleComponent } from './battle/battle.component';
-import { LogComponent } from './log/log.component';
+import { PokemonLogComponent } from './pokemon-log/pokemon-log.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonComponent,
     BattleComponent,
-    LogComponent
+    PokemonLogComponent
   ],
   imports: [
     BrowserModule
