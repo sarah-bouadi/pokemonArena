@@ -17,6 +17,7 @@ export class BattleComponent implements OnInit {
   playPauseButtonText: string = 'Start';
   todayDate!: number;
   logs: string[] = [];
+  battleStarted: boolean = false;
 
   constructor(private pokemonService: PokemonService, private route: ActivatedRoute) { }
 
@@ -29,6 +30,7 @@ export class BattleComponent implements OnInit {
     this.nowFighter = this.pokemonService.whoAttackFirst();
 
     this.isInBattle = false;
+
 
     this.todayDate = Date.now();
 
@@ -45,6 +47,8 @@ export class BattleComponent implements OnInit {
    this.isInBattle = !this.isInBattle;
    if(this.isInBattle){
      this.playPauseButtonText = 'Pause';
+     this.battleStarted = true;
+
    }else{
      this.playPauseButtonText = 'Start';
    }

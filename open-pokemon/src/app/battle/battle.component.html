@@ -1,49 +1,12 @@
-<!--<div class="app-pokemon" class="pokemon1_item" [ngClass]="{inBattle: isInBattle}">-->
-<!--    &lt;!&ndash;<p>{{ 33425564.34214 | number}}</p>&ndash;&gt;-->
-<!--    &lt;!&ndash;  <p>{{ 33425564.36214 | number: '1.0-1'}}</p>&ndash;&gt;-->
-<!--    &lt;!&ndash;  <p>{{ 0.3367 | percent: '1.0-2'}}</p>&ndash;&gt;-->
-<!--    &lt;!&ndash;  <p>{{ 342.3367 | currency: 'EUR' : 'code'}}</p>&ndash;&gt;-->
-<!--    <h2>{{pokemon1.name | uppercase }}</h2>-->
-<!--    <a routerLink="/menu">Back</a>-->
-<!--    <p><strong>Today date</strong> {{todayDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>-->
-<!--    <img [src]="pokemon1.imageUrl" [alt]="pokemon1.name">-->
-<!--    <p>-->
-<!--        <span [ngStyle]="{color:'rgb('+pokemon1.nb_damaged*50+',0,0)'}"><strong>Pokemon status:</strong> {{pokemonStatus1}}</span>-->
-<!--        <br>-->
-<!--        <span [ngStyle]="{color:'rgb('+pokemon1.nb_damaged*50+',0,0)'}"><strong>Damages:</strong> {{pokemon1.nb_damaged}}</span>-->
-<!--    </p>-->
-<!--    <p><strong>Damage Action mode:</strong> {{damageActionButtonText}} <button (click)="onChangeDamageAction()">Change Damage Action</button></p>-->
-<!--    <button (click)="onDamageAction(this.pokemon1)">Damage action</button>-->
-<!--    <button (click)="onEnterBattle()">Enter in Battle</button>-->
-<!--    <button (click)="onQuitBattle()">Quit a Battle</button>-->
-<!--</div>-->
-
-<!--<div class="app-pokemon" class="pokemon2_item" [ngClass]="{inBattle: isInBattle}">-->
-<!--    &lt;!&ndash;<p>{{ 33425564.34214 | number}}</p>&ndash;&gt;-->
-<!--    &lt;!&ndash;  <p>{{ 33425564.36214 | number: '1.0-1'}}</p>&ndash;&gt;-->
-<!--    &lt;!&ndash;  <p>{{ 0.3367 | percent: '1.0-2'}}</p>&ndash;&gt;-->
-<!--    &lt;!&ndash;  <p>{{ 342.3367 | currency: 'EUR' : 'code'}}</p>&ndash;&gt;-->
-<!--    <h2>{{pokemon2.name | uppercase }}</h2>-->
-<!--    <a routerLink="/menu">Back</a>-->
-<!--    <p><strong>Today date</strong> {{todayDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>-->
-<!--    <img [src]="pokemon2.imageUrl" [alt]="pokemon2.name">-->
-<!--    <p>-->
-<!--        <span [ngStyle]="{color:'rgb('+pokemon2.nb_damaged*50+',0,0)'}"><strong>Pokemon status:</strong> {{pokemonStatus1}}</span>-->
-<!--        <br>-->
-<!--        <span [ngStyle]="{color:'rgb('+pokemon2.nb_damaged*50+',0,0)'}"><strong>Damages:</strong> {{pokemon2.nb_damaged}}</span>-->
-<!--    </p>-->
-<!--    <p><strong>Damage Action mode:</strong> {{damageActionButtonText}} <button (click)="onChangeDamageAction()">Change Damage Action</button></p>-->
-<!--    <button (click)="onDamageAction(this.pokemon2)">Damage action</button>-->
-<!--    <button (click)="onEnterBattle()">Enter in Battle</button>-->
-<!--    <button (click)="onQuitBattle()">Quit a Battle</button>-->
-<!--</div>-->
-
 <div class="battle">
     <div class="battle-element">
         <app-pokemon-fighter [pokemonIndex]="1"></app-pokemon-fighter>
     </div>
     <div class="battle-element">
         <button (click)="playPauseBattle()">{{playPauseButtonText}}</button>
+
+        <p *ngIf="battleStarted"><strong>Date: </strong> {{todayDate | date: 'd MMMM yyyy, HH:mm:ss' }}</p>
+
         <div id="log" *ngFor="let log of logs" [ngStyle]="{color: log.includes('is dead') ? 'red' : 'blue'}">{{log}}</div>
     </div>
     <div class="battle-element">

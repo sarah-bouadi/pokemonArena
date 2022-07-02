@@ -26,6 +26,7 @@ export class PokemonComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.pokemonStatus = 'Mmmm';
     // this.isPokemonSelected = false;
     this.isInBattle = false;

@@ -10,13 +10,15 @@
   justify-content: center;
 }
 
-//.pokemon1_item{
-//  float: left;
-//}
-//
-//.pokemon2_item{
-//  float: right;
-//}
+.pokemon1_item{
+  float: left;
+  position: absolute;
+}
+
+.pokemon2_item{
+  float: right;
+  position: absolute;
+}
 
 .battle-element{
   display: inline-block;
