@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
   }
 
   onBattleField() {
-    this.router.navigateByUrl(`battleField`);
+    this.router.navigateByUrl(`battleField/pokemonfighter1/`+this.pokemonService.pokemon1.id+`/pokemonfighter2/`+this.pokemonService.pokemon2.id);
   }
   // onViewPokemon() {
   //   this.router.navigateByUrl(`pokemons/${this.pokemon.id}`);

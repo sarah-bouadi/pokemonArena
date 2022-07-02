@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'pokemons/:id', component: SinglePokemonComponent},
   { path: 'pokemons', component: PokemonListComponent},
   { path: 'menu', component: MenuComponent},
-  { path: 'battleField', component: BattleComponent},
+  // { path: 'battleField', component: BattleComponent},
+  { path: `battleField/pokemonfighter1/:pokemonfighter1/pokemonfighter2/:pokemonfighter2`, component: BattleComponent},
   { path: '', component: LandingPageComponent}
 ]
 

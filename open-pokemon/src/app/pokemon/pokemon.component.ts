@@ -14,7 +14,6 @@ import {PokemonListServiceService} from "../services/pokemon-list-service.servic
 export class PokemonComponent implements OnInit {
   @Input() pokemon!: Pokemon;
   @Input() pokemonIndex!: number;
-  @Input() value!: string;
   pokemonStatus!: string;
   isInBattle!: boolean;
   damageActionButtonText!: 'increaseDamage' | 'reduceDamage';

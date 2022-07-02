@@ -29,7 +29,6 @@ export class BattleComponent implements OnInit {
     this.todayDate = Date.now()
   }
 
-
   attack(pok1_fighter:Pokemon, pok2_damaged:Pokemon): boolean{
     /* Default Specific attack - defense battle */
     if (pok1_fighter.name=="pikachu" && pok2_damaged.name=="salamech"){
@@ -46,6 +45,23 @@ export class BattleComponent implements OnInit {
     else{
       pok2_damaged.HP -= this.attackTypeAdvantage(pok1_fighter, pok2_damaged);
       return true;
+    }
+  }
+
+  attackTypeAdvantage(pok1:Pokemon, pok2:Pokemon): number{
+    if (pok1.type === PokemonType.Fire && pok2.type == PokemonType.Ice){
+      return pok1.attack * 1.5 ;
+    }
+    else{
+      return pok1.attack;
+    }
+  }
+
+  onChangeDamageAction(){
+    if (this.damageActionButtonText === 'increaseDamage'){
+      this.damageActionButtonText = 'reduceDamage';
+    } else{
+      this.damageActionButtonText = 'increaseDamage';
     }
   }
 
@@ -70,29 +86,12 @@ export class BattleComponent implements OnInit {
     }
   }
 
-  attackTypeAdvantage(pok1:Pokemon, pok2:Pokemon): number{
-    if (pok1.type === PokemonType.Fire && pok2.type == PokemonType.Ice){
-      return pok1.attack * 1.5 ;
-    }
-    else{
-      return pok1.attack;
-    }
-  }
-
   onEnterBattle(){
     this.isInBattle = true;
   }
 
   onQuitBattle(){
     this.isInBattle = false;
-  }
-
-  onChangeDamageAction(){
-    if (this.damageActionButtonText === 'increaseDamage'){
-      this.damageActionButtonText = 'reduceDamage';
-    } else{
-      this.damageActionButtonText = 'increaseDamage';
-    }
   }
 
   onDamageAction(pokemon: Pokemon){

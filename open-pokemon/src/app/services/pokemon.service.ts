@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import {Pokemon} from "../pokemon/pokemon.model";
+import {PokemonType} from "../models/pokemon.model";
 
 @Injectable({
   providedIn: 'root' // Explain to angular that this service is used once for the whole app
@@ -13,7 +14,7 @@ export class PokemonService{
         attack: 7,
         speed: 5,
         HP: 100,
-        type: "Thunder",
+        type: PokemonType.Thunder,
         nb_damaged: 0,
         specialPower: "Thor thunder"
       },
@@ -24,7 +25,7 @@ export class PokemonService{
         attack: 6,
         speed: 3,
         HP: 100,
-        type: "Fire",
+        type: PokemonType.Fire,
         nb_damaged: 0
       },
       {
@@ -34,7 +35,7 @@ export class PokemonService{
         attack: 5,
         speed: 4,
         HP: 100,
-        type: "Ice",
+        type: PokemonType.Ice,
         nb_damaged: 0
       }
     ];
@@ -64,5 +65,10 @@ export class PokemonService{
     actionToPokemonById(pokemonId: string, actionToPokemon: 'increaseDamage' | 'reduceDamage'): void{
       const pokemon = this.getPokemonById(pokemonId);
       actionToPokemon === 'increaseDamage' ? pokemon.nb_damaged++ : pokemon.nb_damaged--;
+    }
+
+    reducePokemonHP(pokemonId: string, damage: number): void{
+      const pokemon = this.getPokemonById(pokemonId);
+      pokemon.HP--;
     }
 }
