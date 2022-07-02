@@ -1,4 +1,3 @@
-<p>battle works!</p>
 <!--<div class="app-pokemon" class="pokemon1_item" [ngClass]="{inBattle: isInBattle}">-->
 <!--    &lt;!&ndash;<p>{{ 33425564.34214 | number}}</p>&ndash;&gt;-->
 <!--    &lt;!&ndash;  <p>{{ 33425564.36214 | number: '1.0-1'}}</p>&ndash;&gt;-->
@@ -39,8 +38,9 @@
 <!--    <button (click)="onQuitBattle()">Quit a Battle</button>-->
 <!--</div>-->
 
-<div>
+<div class="battle">
+    <button (click)="playPauseBattle()">{{playPauseButtonText}}</button>
     <app-pokemon-fighter [pokemonIndex]="1" class="pokemon1_item"></app-pokemon-fighter>
-
+    <div id="log"> Les logs apparaitront ici !</div>
     <app-pokemon-fighter [pokemonIndex]="2" class="pokemon2_item"></app-pokemon-fighter>
 </div>

@@ -13,9 +13,11 @@ export class BattleComponent implements OnInit {
   pokemon2!: Pokemon;
   pokemonStatus1!: string;
   pokemonStatus2!: string;
-  isInBattle!: boolean;
+  isInBattle: boolean = false;
+  playPauseButtonText: string = 'Start';
   damageActionButtonText!: 'increaseDamage' | 'reduceDamage';
   todayDate!: number;
+  logs: string[] = [];
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -65,10 +67,10 @@ export class BattleComponent implements OnInit {
     }
   }
 
-  whoAttackFirst(pok1:Pokemon, pok2:Pokemon): null | Pokemon{
+  whoAttackFirst(pok1:Pokemon, pok2:Pokemon): Pokemon{
     /* Verify by PokemonType */
     if (pok1.type == PokemonType.Fire && pok2.type == PokemonType.Fire){
-      return null;
+      return pok1;
     }
     else if (pok1.type == PokemonType.Fire){
       return pok1;
@@ -86,12 +88,21 @@ export class BattleComponent implements OnInit {
     }
   }
 
-  onEnterBattle(){
-    this.isInBattle = true;
-  }
+  // onEnterBattle(){
+  //   this.isInBattle = true;
+  // }
+  //
+  // onQuitBattle(){
+  //   this.isInBattle = false;
+  // }
 
-  onQuitBattle(){
-    this.isInBattle = false;
+  playPauseBattle(){
+   this.isInBattle = !this.isInBattle;
+   if(this.isInBattle){
+     this.playPauseButtonText = 'Pause'
+   }else{
+     this.playPauseButtonText = 'Start'
+   }
   }
 
   onDamageAction(pokemon: Pokemon){
@@ -121,4 +132,18 @@ export class BattleComponent implements OnInit {
     }
   }
 
+  startBattle(){
+    let firstAttacker = this.whoAttackFirst(this.pokemon1, this.pokemon2);
+    let secondAttacker;
+
+    if (firstAttacker === this.pokemon1){
+      secondAttacker = this.pokemon2;
+    }else{
+      secondAttacker = this.pokemon1;
+    }
+
+    while(this.isInBattle){
+      this.attack(firstAttacker, secondAttacker);
+    }
+  }
 }
