@@ -10,19 +10,14 @@
   justify-content: center;
 }
 
-.pokemon1_item{
-  float: left;
-}
+//.pokemon1_item{
+//  float: left;
+//}
+//
+//.pokemon2_item{
+//  float: right;
+//}
 
-.pokemon2_item{
-  float: right;
-}
-
-.battle{
-  background-color: #858585;
-}
-
-#log{
-  float: inside;
-  position: center;
+.battle-element{
+  display: inline-block;
 }

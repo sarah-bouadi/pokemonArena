@@ -39,8 +39,14 @@
 <!--</div>-->
 
 <div class="battle">
-    <button (click)="playPauseBattle()">{{playPauseButtonText}}</button>
-    <app-pokemon-fighter [pokemonIndex]="1" class="pokemon1_item"></app-pokemon-fighter>
-    <div id="log"> Les logs apparaitront ici !</div>
-    <app-pokemon-fighter [pokemonIndex]="2" class="pokemon2_item"></app-pokemon-fighter>
+    <div class="battle-element">
+        <app-pokemon-fighter [pokemonIndex]="1"></app-pokemon-fighter>
+    </div>
+    <div class="battle-element">
+        <button (click)="playPauseBattle()">{{playPauseButtonText}}</button>
+        <div id="log" *ngFor="let log of logs">{{log}}</div>
+    </div>
+    <div class="battle-element">
+        <app-pokemon-fighter [pokemonIndex]="2"></app-pokemon-fighter>
+    </div>
 </div>

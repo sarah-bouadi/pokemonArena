@@ -11,6 +11,7 @@ import {PokemonService} from "../services/pokemon.service";
 export class BattleComponent implements OnInit {
   pokemon1!: Pokemon;
   pokemon2!: Pokemon;
+  nowFighter!: number;
   pokemonStatus1!: string;
   pokemonStatus2!: string;
   isInBattle: boolean = false;
@@ -24,39 +25,20 @@ export class BattleComponent implements OnInit {
   ngOnInit(): void {
     this.pokemon1 = this.pokemonService.pokemon1;
     this.pokemon2 = this.pokemonService.pokemon2;
-    this.pokemonStatus1 = 'Mmmm';
-    this.pokemonStatus2 = 'Mmmm';
-    this.isInBattle = false;
-    this.damageActionButtonText = 'increaseDamage';
-    this.todayDate = Date.now()
+
+    this.nowFighter = this.pokemonService.whoAttackFirst();
+
+    this.isInBattle = true;
+
+    this.todayDate = Date.now();
+
+    this.addLog("Let's gooooooo!\n");
+
+    this.startBattle();
   }
 
-  attack(pok1_fighter:Pokemon, pok2_damaged:Pokemon): boolean{
-    /* Default Specific attack - defense battle */
-    if (pok1_fighter.name=="pikachu" && pok2_damaged.name=="salamech"){
-      pok1_fighter.speed += 2;
-      pok2_damaged.HP -= this.attackTypeAdvantage(pok1_fighter, pok2_damaged);
-      return true;
-    }
-    else if (pok1_fighter.name==="bulbizarre" && pok2_damaged.name==="pikachu"){
-      pok2_damaged.speed += 2;
-      pok2_damaged.HP -= this.attackTypeAdvantage(pok1_fighter, pok2_damaged);
-      return true;
-    }
-    /* Default attack - defense battle */
-    else{
-      pok2_damaged.HP -= this.attackTypeAdvantage(pok1_fighter, pok2_damaged);
-      return true;
-    }
-  }
-
-  attackTypeAdvantage(pok1:Pokemon, pok2:Pokemon): number{
-    if (pok1.type === PokemonType.Fire && pok2.type == PokemonType.Ice){
-      return pok1.attack * 1.5 ;
-    }
-    else{
-      return pok1.attack;
-    }
+  addLog(msg: string){
+    this.logs.push("log " + this.logs.length + " : " + msg);
   }
 
   onChangeDamageAction(){
@@ -88,14 +70,6 @@ export class BattleComponent implements OnInit {
     }
   }
 
-  // onEnterBattle(){
-  //   this.isInBattle = true;
-  // }
-  //
-  // onQuitBattle(){
-  //   this.isInBattle = false;
-  // }
-
   playPauseBattle(){
    this.isInBattle = !this.isInBattle;
    if(this.isInBattle){
@@ -105,45 +79,69 @@ export class BattleComponent implements OnInit {
    }
   }
 
-  onDamageAction(pokemon: Pokemon){
-    //this.pokemon.nb_damaged++;
-    this.pokemonService.actionToPokemonById(pokemon.id, this.damageActionButtonText);
-    if (this.pokemon1.id === pokemon.id){
-      if (pokemon.nb_damaged > 0) {
-        this.pokemonStatus1 = 'ayyy';
-      }
-      else if (pokemon.nb_damaged === 0) {
-        this.pokemonStatus1 = 'Mmmm';
-      }
-      else {
-        this.pokemonStatus1 = 'Youpiii';
-      }
-    }
-    else{
-      if (pokemon.nb_damaged > 0) {
-        this.pokemonStatus2 = 'ayyy';
-      }
-      else if (pokemon.nb_damaged === 0) {
-        this.pokemonStatus2 = 'Mmmm';
-      }
-      else {
-        this.pokemonStatus2 = 'Youpiii';
-      }
+  changeFighter(){
+    if (this.nowFighter === 1){
+      this.nowFighter = 2;
+    } else{
+      this.nowFighter = 1;
     }
   }
 
+
+  isPokemonDead(): boolean{
+    return this.pokemonService.pokemon1.HP <= 0 || this.pokemonService.pokemon2.HP <= 0;
+  }
+
   startBattle(){
-    let firstAttacker = this.whoAttackFirst(this.pokemon1, this.pokemon2);
-    let secondAttacker;
+    // let firstAttacker = this.whoAttackFirst(this.pokemon1, this.pokemon2);
+    // let secondAttacker;
+    //
+    // if (firstAttacker === this.pokemon1){
+    //   secondAttacker = this.pokemon2;
+    // }else{
+    //   secondAttacker = this.pokemon1;
+    // }
 
-    if (firstAttacker === this.pokemon1){
-      secondAttacker = this.pokemon2;
-    }else{
-      secondAttacker = this.pokemon1;
-    }
+    setInterval(()=>{
+      if(this.isInBattle && !(this.isPokemonDead())){
+        let damageValue: number;
+        if (this.nowFighter === 1){
+          damageValue = this.pokemonService.attack(1);
+          this.addLog(this.pokemonService.pokemon1.name + " attacked ! " + this.pokemonService.pokemon2.name + " Have " + this.pokemonService.pokemon2.HP + " HP");
+          // this.anAsyncCall().then(r => this.changeFighter())
+          // setTimeout(this.changeFighter, 5000);
+          this.changeFighter();
+        }
+        else{
+          damageValue = this.pokemonService.attack(2);
+          this.addLog(this.pokemonService.pokemon2.name + " attacked ! " + this.pokemonService.pokemon1.name + " Have " + this.pokemonService.pokemon1.HP + " HP");
+          // this.anAsyncCall().then(r => this.changeFighter())
+          // setTimeout(this.changeFighter, 5000);
+          this.changeFighter();
+        }
+      }
+      else{
+        new Error("Stop battle!")
+      }
+    }, 1000);
 
-    while(this.isInBattle){
-      this.attack(firstAttacker, secondAttacker);
-    }
+  //   while(this.isInBattle && !(this.isPokemonDead())){
+  //     let damageValue: number;
+  //     if (this.nowFighter === 1){
+  //       damageValue = this.pokemonService.attack(1);
+  //       this.addLog(this.pokemonService.pokemon1.name + " attacked ! " + this.pokemonService.pokemon2.name + " Have " + this.pokemonService.pokemon2.HP + " HP");
+  //       // this.anAsyncCall().then(r => this.changeFighter())
+  //       // setTimeout(this.changeFighter, 5000);
+  //       this.changeFighter();
+  //     }
+  //     else{
+  //       damageValue = this.pokemonService.attack(2);
+  //       this.addLog(this.pokemonService.pokemon2.name + " attacked ! " + this.pokemonService.pokemon1.name + " Have " + this.pokemonService.pokemon1.HP + " HP");
+  //       // this.anAsyncCall().then(r => this.changeFighter())
+  //       // setTimeout(this.changeFighter, 5000);
+  //       this.changeFighter();
+  //     }
+  //   }
+  // }
   }
 }
