@@ -54,7 +54,7 @@ export class PokemonService{
       return this.pokemons;
     }
 
-    getPokemonById(pokemonId: string): Pokemon {
+    getPokemonById(pokemonId: string | null): Pokemon {
       const pokemon = this.pokemons.find(pokemon => pokemon.id === pokemonId);
       if (!pokemon){
         throw  new Error("Pokemon not found");
@@ -72,32 +72,24 @@ export class PokemonService{
       pokemon.HP--;
     }
 
-    attack(fighterIndex:number): number{
+    attack(fighterIndex:number): void{
         const pok_fighter: Pokemon = fighterIndex === 1 ? this.pokemon1 : this.pokemon2;
         const pok_damaged: Pokemon = pok_fighter.id === this.pokemon1.id ? this.pokemon2 : this.pokemon1;
-        let status : boolean = false;
-        let damageValue: number;
 
         /* Default Specific attack - defense battle */
         if (pok_fighter.name=="pikachu" && pok_damaged.name=="salamech"){
             pok_fighter.speed += 2;
-            status = true;
         }
         else if (pok_fighter.name==="bulbizarre" && pok_damaged.name==="pikachu"){
             pok_damaged.speed += 2;
-            status = true;
         }
 
         // pok_damaged take a beating
         pok_damaged.HP -= this.attackTypeAdvantage(pok_fighter, pok_damaged);
-        damageValue = this.attackTypeAdvantage(pok_fighter, pok_damaged);
 
         // Update the two pokemons datas in DB
-        if (status){
-            this.pokemon1 = fighterIndex === 1 ? pok_fighter : pok_damaged;
-            this.pokemon2 = this.pokemon1.id === pok_fighter.id ? pok_damaged : pok_fighter;
-        }
-        return status ? damageValue : 0;
+        this.pokemon1 = fighterIndex === 1 ? pok_fighter : pok_damaged;
+        this.pokemon2 = this.pokemon1.id === pok_fighter.id ? pok_damaged : pok_fighter;
     }
 
     attackTypeAdvantage(pok1:Pokemon, pok2:Pokemon): number{

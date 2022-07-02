@@ -44,7 +44,7 @@
     </div>
     <div class="battle-element">
         <button (click)="playPauseBattle()">{{playPauseButtonText}}</button>
-        <div id="log" *ngFor="let log of logs">{{log}}</div>
+        <div id="log" *ngFor="let log of logs" [ngStyle]="{color: log.includes('is dead') ? 'red' : 'blue'}">{{log}}</div>
     </div>
     <div class="battle-element">
         <app-pokemon-fighter [pokemonIndex]="2"></app-pokemon-fighter>

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Pokemon} from "../pokemon/pokemon.model";
 import {PokemonService} from "../services/pokemon.service";
 import {PokemonType} from "../models/pokemon.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pokemon-fighter',
@@ -17,10 +18,11 @@ export class PokemonFighterComponent implements OnInit {
   damageActionButtonText!: 'increaseDamage' | 'reduceDamage';
   todayDate!: number;
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.pokemon = this.pokemonIndex === 1 ? this.pokemonService.pokemon1 : this.pokemonService.pokemon2;
+
     this.pokemonStatus = 'Mmmm';
     this.isInBattle = false;
     this.damageActionButtonText = 'increaseDamage';
