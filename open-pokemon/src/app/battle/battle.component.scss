@@ -17,9 +17,18 @@
 
 .pokemon2_item{
   float: right;
-  position: absolute;
 }
 
 .battle-element{
   display: inline-block;
+}
+
+/*
+.battle {
+  background-image: url('https://ssb.wiki.gallery/images/thumb/7/73/SSBU-Pok%C3%A9mon_Stadium_2.png/1200px-SSBU-Pok%C3%A9mon_Stadium_2.png');
+}
+*/
+
+#log{
+  background-color: white;
 }

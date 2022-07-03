@@ -73,6 +73,7 @@ export class BattleComponent implements OnInit {
           this.pokemonService.attack(1);
           if (this.pokemonService.pokemon2.HP <= 0){
             this.addLog(this.pokemonService.pokemon2.name + " is dead !");
+            this.pokemon2.imageUrl = '/assets/imgres.png';
           }
           else{
             this.addLog(this.pokemonService.pokemon1.name + " attacked ! " + this.pokemonService.pokemon2.name + " Have " + this.pokemonService.pokemon2.HP + " HP");
@@ -83,6 +84,7 @@ export class BattleComponent implements OnInit {
           this.pokemonService.attack(2);
           if (this.pokemonService.pokemon1.HP <= 0){
             this.addLog(this.pokemonService.pokemon1.name + " is dead !")
+            this.pokemon1.imageUrl = '/assets/imgres.png';
           }
           else{
             this.addLog(this.pokemonService.pokemon2.name + " attacked ! " + this.pokemonService.pokemon1.name + " Have " + this.pokemonService.pokemon1.HP + " HP");
