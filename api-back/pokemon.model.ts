@@ -3,32 +3,24 @@ import mongoose, {Schema, Document, Model} from "mongoose";
 const pokemonSchema = new Schema({
     name: {
         type: Schema.Types.String,
-        required: true,
-        unique: true
     },
     imageUrl: {
         type: Schema.Types.String,
-        required: true,
     },
     attack: {
-        type: Schema.Types.number,
-        required: true,
+        type: Schema.Types.Number,
     },
     speed: {
-        type: Schema.Types.number,
-        unique: true
+        type: Schema.Types.Number,
     },
     HP: {
-        type: Schema.Types.number,
-        unique: true
+        type: Schema.Types.Number,
     },
     type: {
         type: Schema.Types.String,
-        ref: 'children',
-        required: true
     },
     nb_damaged: {
-        type: Schema.Types.number,
+        type: Schema.Types.Number,
     },
     specialPower: {
         type: Schema.Types.String,

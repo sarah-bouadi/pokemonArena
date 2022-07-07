@@ -1,5 +1,6 @@
-import express, {Router, Request, Response} from "express";
-import {PokemonService} from "pokemon.service";
+import {Router, Request, Response} from "express";
+import express = require("express");
+import {PokemonService} from "./pokemon.service";
 
 export class PokemonController {
 
@@ -78,12 +79,9 @@ export class PokemonController {
     buildRoutes(): Router {
         const router = express.Router();
 
-        router.use(checkUserConnected());
-        router.get('/', isAdmin(), this.getAllPokemons.bind(this));
-        //TODO @Souleman : ajouter une méthode pour voir ses propres infos pokemon/ idem accompanist
-        router.post('/', isPokemon(), express.json(), this.createPokemon.bind(this));
-        router.get('/pokemonInfos', isPokemon(), this.getPokemonInfos.bind(this));
-        router.get('/pokemonId/:pokemon_id', isAdmin(), this.getPokemon.bind(this));
+        router.get('/', this.getAllPokemons.bind(this));
+        router.post('/', express.json(), this.createPokemon.bind(this));
+        router.get('/pokemonId/:pokemon_id', this.getPokemon.bind(this));
         return router;
     }
 }
