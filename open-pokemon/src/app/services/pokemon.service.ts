@@ -20,8 +20,8 @@ export class PokemonService{
       },
       {
         id: 'salameck',
-        name: 'salameck',
-        imageUrl: "https://cdn-icons-png.flaticon.com/512/188/188989.png",
+        name: 'Salaméche',
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/188/188990.png" ,
         attack: 6,
         speed: 3,
         HP: 100,
@@ -30,8 +30,8 @@ export class PokemonService{
       },
       {
         id: 'bulbizarre',
-        name: 'bulbizarre',
-        imageUrl: "https://cdn-icons-png.flaticon.com/512/188/188990.png",
+        name: 'Bulbizarre',
+        imageUrl:"https://cdn-icons-png.flaticon.com/512/188/188989.png",
         attack: 5,
         speed: 4,
         HP: 100,

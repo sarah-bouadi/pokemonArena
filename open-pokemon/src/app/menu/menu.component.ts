@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemons = this.pokemonService.getAllPokemons();
+
   }
 
   onBattleField() {

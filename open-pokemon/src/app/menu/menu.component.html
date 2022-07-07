@@ -1,21 +1,22 @@
 <div class="pokemon_choose">
     <div class="pokemon1_choose">
-        <button>Choose pokemon 1</button>
+        <a>Choose pokemon 1</a>
         <app-pokemon-list [pokemonIndex]="1" (change)="onReadyForBattle()"></app-pokemon-list>
     </div>
 
     <ng-container
             *ngIf="readyForBattle; then isReady; else isNotReady">
     </ng-container>
+
     <ng-template #isReady>
         <button  (click)="onBattleField()">Start Battle</button>
     </ng-template>
-    <ng-template #isNotReady>
+    <ng-template #isNotReady style="text-align: center">
         <button>Ready</button>
     </ng-template>
 
     <div class="pokemon2_choose">
-        <button>Choose pokemon 2</button>
+        <a>Choose pokemon 2</a>
         <app-pokemon-list [pokemonIndex]="2" (change)="onReadyForBattle()"></app-pokemon-list>
     </div>
 </div>

@@ -2,7 +2,6 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {registerLocaleData} from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
-
 import { AppComponent } from './app.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
@@ -31,6 +30,7 @@ import { PokemonFighterComponent } from './pokemon-fighter/pokemon-fighter.compo
         BrowserModule,
         AppRoutingModule,
         FormsModule
+
     ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' }
