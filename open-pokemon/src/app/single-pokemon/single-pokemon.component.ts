@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Pokemon} from "../pokemon/pokemon.model";
 import {PokemonService} from "../services/pokemon.service";
 import {ActivatedRoute} from "@angular/router";
+import { PokemonDocument } from '../../../../api-back/pokemon.model';
 
 @Component({
   selector: 'app-single-pokemon',
@@ -9,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./single-pokemon.component.scss']
 })
 export class SinglePokemonComponent implements OnInit {
-  pokemon!: Pokemon;
+  pokemon!: PokemonDocument;
   pokemonStatus!: string;
   isInBattle!: boolean;
   damageActionButtonText!: 'increaseDamage' | 'reduceDamage';
@@ -22,7 +23,9 @@ export class SinglePokemonComponent implements OnInit {
 
   ngOnInit() {
     this.pokemonId = this.route.snapshot.params['id'];
-    this.pokemon = this.pokemonService.getPokemonById(this.pokemonId);
+    this.pokemonService.getPokemonById(this.pokemonId).subscribe((res) => {
+      this.pokemon = res;
+    });
     this.pokemonStatus = 'Mmmm';
     this.isInBattle = false;
     this.damageActionButtonText = 'increaseDamage';
@@ -45,18 +48,18 @@ export class SinglePokemonComponent implements OnInit {
     }
   }
 
-  onDamageAction(){
-    //this.pokemon.nb_damaged++;
-    this.pokemonService.actionToPokemonById(this.pokemon.id, this.damageActionButtonText);
-    if (this.pokemon.nb_damaged > 0) {
-      this.pokemonStatus = 'ayyy';
-    }
-    else if (this.pokemon.nb_damaged === 0) {
-      this.pokemonStatus = 'Mmmm';
-    }
-    else {
-      this.pokemonStatus = 'Youpiii';
-    }
-  }
+  // onDamageAction(){
+  //   //this.pokemon.nb_damaged++;
+  //   this.pokemonService.actionToPokemonById(this.pokemon.id, this.damageActionButtonText);
+  //   if (this.pokemon.nb_damaged > 0) {
+  //     this.pokemonStatus = 'ayyy';
+  //   }
+  //   else if (this.pokemon.nb_damaged === 0) {
+  //     this.pokemonStatus = 'Mmmm';
+  //   }
+  //   else {
+  //     this.pokemonStatus = 'Youpiii';
+  //   }
+  // }
 
 }

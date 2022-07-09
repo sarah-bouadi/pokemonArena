@@ -13,6 +13,7 @@ import { MenuComponent } from './menu/menu.component';
 import {FormsModule} from "@angular/forms";
 import { BattleComponent } from './battle/battle.component';
 import { PokemonFighterComponent } from './pokemon-fighter/pokemon-fighter.component';
+import { HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -25,11 +26,13 @@ import { PokemonFighterComponent } from './pokemon-fighter/pokemon-fighter.compo
     MenuComponent,
     BattleComponent,
     PokemonFighterComponent
+
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule,
 
     ],
   providers: [

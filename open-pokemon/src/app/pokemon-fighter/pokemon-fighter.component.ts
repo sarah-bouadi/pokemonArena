@@ -3,6 +3,7 @@ import {Pokemon} from "../pokemon/pokemon.model";
 import {PokemonService} from "../services/pokemon.service";
 import {PokemonType} from "../models/pokemon.model";
 import {ActivatedRoute} from "@angular/router";
+import { PokemonDocument } from '../../../../api-back/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-fighter',
@@ -11,8 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PokemonFighterComponent implements OnInit {
   @Input() pokemonIndex!: number;
-  pokemon!: Pokemon;
-  pokemonOpponent!: Pokemon;
+  pokemon!: PokemonDocument;
   pokemonStatus!: string;
   isInBattle!: boolean;
   damageActionButtonText!: 'increaseDamage' | 'reduceDamage';
@@ -27,32 +27,6 @@ export class PokemonFighterComponent implements OnInit {
     this.isInBattle = false;
     this.damageActionButtonText = 'increaseDamage';
     this.todayDate = Date.now()
-  }
-
-  onEnterBattle(){
-    this.isInBattle = true;
-  }
-
-  onQuitBattle(){
-    this.isInBattle = false;
-  }
-
-  onChangeDamageAction(){
-    if (this.damageActionButtonText === 'increaseDamage'){
-      this.damageActionButtonText = 'reduceDamage';
-    } else{
-      this.damageActionButtonText = 'increaseDamage';
-    }
-  }
-
-  onAttackOpponent(){
-    //this.pokemon.nb_damaged++;
-    if (this.pokemonIndex == 1){
-      this.pokemonService.reducePokemonHP(this.pokemonService.pokemon2.id, 1);
-    }
-    else if (this.pokemonIndex == 2){
-      this.pokemonService.reducePokemonHP(this.pokemonService.pokemon1.id, 1);
-    }
   }
 
 }

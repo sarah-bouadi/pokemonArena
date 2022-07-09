@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Pokemon} from "../pokemon/pokemon.model";
 import {PokemonService} from "../services/pokemon.service";
 import {Router} from "@angular/router";
+import { PokemonDocument } from '../../../../api-back/pokemon.model';
 
 @Component({
   selector: 'app-menu',
@@ -9,13 +10,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  pokemons!: Pokemon[];
+  pokemons!: PokemonDocument[];
   readyForBattle!: boolean;
 
   constructor(private pokemonService: PokemonService, private router: Router) { }
 
   ngOnInit(): void {
-    this.pokemons = this.pokemonService.getAllPokemons();
+    this.pokemonService.getAllPokemons().subscribe((res) => {
+      this.pokemons = res;
+    });
 
   }
 

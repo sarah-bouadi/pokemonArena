@@ -4,6 +4,7 @@ import {formatDate} from "@angular/common";
 import {PokemonService} from "../services/pokemon.service";
 import {Router} from "@angular/router";
 import {PokemonListServiceService} from "../services/pokemon-list-service.service";
+import { PokemonDocument } from '../../../../api-back/pokemon.model';
 
 @Component({
   selector: 'app-pokemon',
@@ -12,7 +13,7 @@ import {PokemonListServiceService} from "../services/pokemon-list-service.servic
   styles: [`:host > input:checked{background-color: #f00;}`]
 })
 export class PokemonComponent implements OnInit {
-  @Input() pokemon!: Pokemon;
+  @Input() pokemon!: PokemonDocument;
   @Input() pokemonIndex!: number;
   pokemonStatus!: string;
   isInBattle!: boolean;
@@ -46,8 +47,7 @@ export class PokemonComponent implements OnInit {
   //   this.isPokemonSelected = false;
   // }
 
-  onSelectPokemon(pokemon: Pokemon) {
-
+  onSelectPokemon(pokemon: PokemonDocument) {
     if (this.pokemonIndex === 1) {
       this.pokemonService.setPokemon1(pokemon);
       // this.onChangePokemonStyle()

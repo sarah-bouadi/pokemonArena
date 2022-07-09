@@ -3,6 +3,7 @@ import {Pokemon} from "../pokemon/pokemon.model";
 import {PokemonType} from "../models/pokemon.model";
 import {PokemonService} from "../services/pokemon.service";
 import {ActivatedRoute} from "@angular/router";
+import { PokemonDocument } from '../../../../api-back/pokemon.model';
 
 @Component({
   selector: 'app-battle',
@@ -10,8 +11,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./battle.component.scss']
 })
 export class BattleComponent implements OnInit {
-  pokemon1!: Pokemon;
-  pokemon2!: Pokemon;
+  pokemon1!: PokemonDocument;
+  pokemon2!: PokemonDocument;
   nowFighter!: number;
   isInBattle: boolean = false;
   playPauseButtonText: string = 'Start';
@@ -24,8 +25,12 @@ export class BattleComponent implements OnInit {
   ngOnInit(): void {
     // this.pokemon1 = this.pokemonService.pokemon1;
     // this.pokemon2 = this.pokemonService.pokemon2;
-    this.pokemon1 = this.pokemonService.getPokemonById(this.route.snapshot.paramMap.get("pokemonfighter1"));
-    this.pokemon2 = this.pokemonService.getPokemonById(this.route.snapshot.paramMap.get("pokemonfighter2"));
+    this.pokemonService.getPokemonById(this.route.snapshot.paramMap.get("pokemonfighter1")).subscribe((res) => {
+      this.pokemon1 = res;
+    });
+    this.pokemonService.getPokemonById(this.route.snapshot.paramMap.get("pokemonfighter2")).subscribe((res) => {
+      this.pokemon2 = res;
+    });
 
     this.nowFighter = this.pokemonService.whoAttackFirst();
 

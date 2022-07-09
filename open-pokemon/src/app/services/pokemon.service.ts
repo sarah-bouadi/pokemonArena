@@ -1,80 +1,80 @@
 import { Injectable } from "@angular/core";
 import {Pokemon} from "../pokemon/pokemon.model";
 import {PokemonType} from "../models/pokemon.model";
-
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {API_URL} from "../../environments/environment";
+import { PokemonDocument } from "../../../../api-back/pokemon.model"
 @Injectable({
   providedIn: 'root' // Explain to angular that this service is used once for the whole app
 })
 export class PokemonService{
-    pokemons: Pokemon[] = [
-      {
-        id: 'pikachu',
-        name: 'Pikachu',
-        imageUrl: "https://cdn-icons-png.flaticon.com/512/528/528098.png",
-        attack: 7,
-        speed: 5,
-        HP: 100,
-        type: PokemonType.Thunder,
-        nb_damaged: 0,
-        specialPower: "Thor thunder"
-      },
-      {
-        id: 'salameck',
-        name: 'Salaméche',
-        imageUrl: "https://cdn-icons-png.flaticon.com/512/188/188990.png" ,
-        attack: 6,
-        speed: 3,
-        HP: 100,
-        type: PokemonType.Fire,
-        nb_damaged: 0
-      },
-      {
-        id: 'bulbizarre',
-        name: 'Bulbizarre',
-        imageUrl:"https://cdn-icons-png.flaticon.com/512/188/188989.png",
-        attack: 5,
-        speed: 4,
-        HP: 100,
-        type: PokemonType.Ice,
-        nb_damaged: 0
-      }
-    ];
+    // pokemons: Pokemon[] = [
+    //   {
+    //     id: 'pikachu',
+    //     name: 'Pikachu',
+    //     imageUrl: "https://cdn-icons-png.flaticon.com/512/528/528098.png",
+    //     attack: 7,
+    //     speed: 5,
+    //     HP: 100,
+    //     type: PokemonType.Thunder,
+    //     nb_damaged: 0,
+    //     specialPower: "Thor thunder"
+    //   },
+    //   {
+    //     id: 'salameck',
+    //     name: 'Salaméche',
+    //     imageUrl: "https://cdn-icons-png.flaticon.com/512/188/188990.png" ,
+    //     attack: 6,
+    //     speed: 3,
+    //     HP: 100,
+    //     type: PokemonType.Fire,
+    //     nb_damaged: 0
+    //   },
+    //   {
+    //     id: 'bulbizarre',
+    //     name: 'Bulbizarre',
+    //     imageUrl:"https://cdn-icons-png.flaticon.com/512/188/188989.png",
+    //     attack: 5,
+    //     speed: 4,
+    //     HP: 100,
+    //     type: PokemonType.Ice,
+    //     nb_damaged: 0
+    //   }
+    // ];
 
-    pokemon1!: Pokemon;
-    pokemon2!: Pokemon;
+    pokemon1!: PokemonDocument;
+    pokemon2!: PokemonDocument;
 
-    setPokemon1(pok1: Pokemon): void{
+    constructor(private http : HttpClient) {
+    }
+    setPokemon1(pok1: PokemonDocument): void{
       this.pokemon1 = pok1;
     }
-    setPokemon2(pok2: Pokemon): void{
+    setPokemon2(pok2: PokemonDocument): void{
       this.pokemon2 = pok2;
     }
 
-    getAllPokemons(): Pokemon[]{
-      return this.pokemons;
+    getAllPokemons(): Observable<PokemonDocument[]>{
+        return this.http.get<PokemonDocument[]>(API_URL + '/api/pokemon/');
     }
 
-    getPokemonById(pokemonId: string | null): Pokemon {
-      const pokemon = this.pokemons.find(pokemon => pokemon.id === pokemonId);
-      if (!pokemon){
-        throw  new Error("Pokemon not found");
-      }
-      return pokemon;
+    getPokemonById(pokemonId: string | null): Observable<PokemonDocument> {
+        return this.http.get<PokemonDocument>(API_URL + '/api/pokemon/pokemonId/' + pokemonId);
     }
 
-    actionToPokemonById(pokemonId: string, actionToPokemon: 'increaseDamage' | 'reduceDamage'): void{
-      const pokemon = this.getPokemonById(pokemonId);
-      actionToPokemon === 'increaseDamage' ? pokemon.nb_damaged++ : pokemon.nb_damaged--;
-    }
+    // actionToPokemonById(pokemonId: string, actionToPokemon: 'increaseDamage' | 'reduceDamage'): void{
+    //   const pokemon = this.getPokemonById(pokemonId).subscribe((res));
+    //   actionToPokemon === 'increaseDamage' ? pokemon.nb_damaged++ : pokemon.nb_damaged--;
+    // }
 
-    reducePokemonHP(pokemonId: string, damage: number): void{
-      const pokemon = this.getPokemonById(pokemonId);
-      pokemon.HP--;
-    }
+    // reducePokemonHP(pokemon: PokemonDocument, damage: number): void{
+    //   pokemon.HP--;
+    // }
 
     attack(fighterIndex:number): void{
-        const pok_fighter: Pokemon = fighterIndex === 1 ? this.pokemon1 : this.pokemon2;
-        const pok_damaged: Pokemon = pok_fighter.id === this.pokemon1.id ? this.pokemon2 : this.pokemon1;
+        const pok_fighter: PokemonDocument = fighterIndex === 1 ? this.pokemon1 : this.pokemon2;
+        const pok_damaged: PokemonDocument = pok_fighter.id === this.pokemon1.id ? this.pokemon2 : this.pokemon1;
 
         /* Default Specific attack - defense battle */
         if (pok_fighter.name=="pikachu" && pok_damaged.name=="salamech"){
@@ -92,7 +92,7 @@ export class PokemonService{
         this.pokemon2 = this.pokemon1.id === pok_fighter.id ? pok_damaged : pok_fighter;
     }
 
-    attackTypeAdvantage(pok1:Pokemon, pok2:Pokemon): number{
+    attackTypeAdvantage(pok1:PokemonDocument, pok2:PokemonDocument): number{
         if (pok1.type === PokemonType.Fire && pok2.type == PokemonType.Ice){
             return pok1.attack * 1.5 ;
         }

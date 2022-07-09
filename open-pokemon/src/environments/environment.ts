@@ -3,8 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  HOST: "http://localhost:",
+  PORT: "3001"
 };
+
+export const API_URL = environment.HOST + environment.PORT;
 
 /*
  * For easier debugging in development mode, you can import the following file
