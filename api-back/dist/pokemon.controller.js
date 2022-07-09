@@ -40,14 +40,14 @@ class PokemonController {
                 res.status(400).json("Please enter a valid type");
                 return;
             }
-            if (!pokemonBody.nb_damaged) {
-                res.status(400).json("Please enter a valid nb_damaged");
-                return;
-            }
-            if (!pokemonBody.specialPower) {
-                res.status(400).json("Please enter a valid specialPower");
-                return;
-            }
+            // if(!pokemonBody.nb_damaged) {
+            //     res.status(400).json("Please enter a valid nb_damaged");
+            //     return;
+            // }
+            // if(!pokemonBody.specialPower) {
+            //     res.status(400).json("Please enter a valid specialPower");
+            //     return;
+            // }
             try {
                 const pokemon = yield pokemon_service_1.PokemonService.getInstance().createPokemon({
                     name: pokemonBody.name,
