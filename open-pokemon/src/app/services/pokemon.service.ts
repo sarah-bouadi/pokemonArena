@@ -9,39 +9,6 @@ import { PokemonDocument } from "../../../../api-back/pokemon.model"
   providedIn: 'root' // Explain to angular that this service is used once for the whole app
 })
 export class PokemonService{
-    // pokemons: Pokemon[] = [
-    //   {
-    //     id: 'pikachu',
-    //     name: 'Pikachu',
-    //     imageUrl: "https://cdn-icons-png.flaticon.com/512/528/528098.png",
-    //     attack: 7,
-    //     speed: 5,
-    //     HP: 100,
-    //     type: PokemonType.Thunder,
-    //     nb_damaged: 0,
-    //     specialPower: "Thor thunder"
-    //   },
-    //   {
-    //     id: 'salameck',
-    //     name: 'Salaméche',
-    //     imageUrl: "https://cdn-icons-png.flaticon.com/512/188/188990.png" ,
-    //     attack: 6,
-    //     speed: 3,
-    //     HP: 100,
-    //     type: PokemonType.Fire,
-    //     nb_damaged: 0
-    //   },
-    //   {
-    //     id: 'bulbizarre',
-    //     name: 'Bulbizarre',
-    //     imageUrl:"https://cdn-icons-png.flaticon.com/512/188/188989.png",
-    //     attack: 5,
-    //     speed: 4,
-    //     HP: 100,
-    //     type: PokemonType.Ice,
-    //     nb_damaged: 0
-    //   }
-    // ];
 
     pokemon1!: PokemonDocument;
     pokemon2!: PokemonDocument;

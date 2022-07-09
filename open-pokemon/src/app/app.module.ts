@@ -8,7 +8,6 @@ import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { HeaderComponent } from './header/header.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { SinglePokemonComponent } from './single-pokemon/single-pokemon.component';
 import { MenuComponent } from './menu/menu.component';
 import {FormsModule} from "@angular/forms";
 import { BattleComponent } from './battle/battle.component';
@@ -22,7 +21,6 @@ import { HttpClientModule} from "@angular/common/http";
     PokemonListComponent,
     HeaderComponent,
     LandingPageComponent,
-    SinglePokemonComponent,
     MenuComponent,
     BattleComponent,
     PokemonFighterComponent

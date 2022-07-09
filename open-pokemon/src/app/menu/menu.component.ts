@@ -16,13 +16,14 @@ export class MenuComponent implements OnInit {
   constructor(private pokemonService: PokemonService, private router: Router) { }
 
   ngOnInit(): void {
-    this.pokemonService.getAllPokemons().subscribe((res) => {
-      this.pokemons = res;
-    });
+    // this.pokemonService.getAllPokemons().subscribe((res) => {
+    //   this.pokemons = res;
+    // });
 
   }
 
   onBattleField() {
+    console.log("onBattleField " + this.pokemonService.pokemon1 + " " + this.pokemonService.pokemon2)
     this.router.navigateByUrl(`battleField/pokemonfighter1/`+this.pokemonService.pokemon1.id+`/pokemonfighter2/`+this.pokemonService.pokemon2.id);
   }
   // onViewPokemon() {

@@ -25,11 +25,11 @@ export class BattleComponent implements OnInit {
   ngOnInit(): void {
     // this.pokemon1 = this.pokemonService.pokemon1;
     // this.pokemon2 = this.pokemonService.pokemon2;
-    this.pokemonService.getPokemonById(this.route.snapshot.paramMap.get("pokemonfighter1")).subscribe((res) => {
-      this.pokemon1 = res;
+    this.pokemonService.getPokemonById(this.route.snapshot.paramMap.get("pokemonfighter1")).subscribe(res => {
+      this.pokemon1 = JSON.parse(<string>JSON.stringify(res));
     });
     this.pokemonService.getPokemonById(this.route.snapshot.paramMap.get("pokemonfighter2")).subscribe((res) => {
-      this.pokemon2 = res;
+      this.pokemon2 = JSON.parse(<string>JSON.stringify(res));
     });
 
     this.nowFighter = this.pokemonService.whoAttackFirst();
@@ -42,6 +42,8 @@ export class BattleComponent implements OnInit {
     this.addLog("Let's gooooooo!\n");
 
     this.startBattle();
+
+    console.log(this.pokemon1 + " " + this.pokemon2);
   }
 
   addLog(msg: string){
