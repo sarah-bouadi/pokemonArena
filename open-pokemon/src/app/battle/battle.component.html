@@ -1,17 +1,26 @@
 <div class="battle">
-    <a style="font-size:24px" class="fa" routerLink="/menu">&#xf060;</a>
-
-    <div class="battle-element">
+    <br/>
+    <img
+            src="assets/icons8-back-64.png"
+            alt="pokeball"
+            title="Pokemon list"
+            height="20px"
+            width="60px"
+            routerLink="/menu"
+    />
+    <br/>
+    <div class="battle-element1">
         <app-pokemon-fighter [pokemonIndex]="1"></app-pokemon-fighter>
     </div>
     <div class="battle-element">
-        <button (click)="playPauseBattle()">{{playPauseButtonText}}</button>
+        <button class="centerButton" (click)="playPauseBattle()"><p class="textStyle">{{playPauseButtonText}}</p></button>
 
-        <p *ngIf="battleStarted"><strong>Date: </strong> {{todayDate | date: 'd MMMM yyyy, HH:mm:ss' }}</p>
+        <p *ngIf="battleStarted" style="color: white"><strong>Date: </strong> {{todayDate | date: 'd MMMM yyyy, HH:mm:ss' }}</p>
 
         <div id="log" *ngFor="let log of logs" [ngStyle]="{color: log.includes('is dead') ? 'red' : 'blue'}">{{log}}</div>
     </div>
-    <div class="battle-element">
+    <div class="battle-element2">
         <app-pokemon-fighter [pokemonIndex]="2"></app-pokemon-fighter>
     </div>
 </div>
+
