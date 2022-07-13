@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Pokemon} from "../pokemon/pokemon.model";
-import {PokemonType} from "../models/pokemon.model";
 import {PokemonService} from "../services/pokemon.service";
 import {ActivatedRoute} from "@angular/router";
 import { PokemonDocument } from '../../../../api-back/pokemon.model';
@@ -23,8 +21,6 @@ export class BattleComponent implements OnInit {
   constructor(private pokemonService: PokemonService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.pokemon1 = this.pokemonService.pokemon1;
-    // this.pokemon2 = this.pokemonService.pokemon2;
     this.pokemonService.getPokemonById(this.route.snapshot.paramMap.get("pokemonfighter1")).subscribe(res => {
       this.pokemon1 = JSON.parse(<string>JSON.stringify(res));
     });
@@ -76,6 +72,7 @@ export class BattleComponent implements OnInit {
     setInterval(()=>{
       if(this.isInBattle && !(this.isPokemonDead())){
         if (this.nowFighter === 1){
+          console.log("fighter 1 attacked");
           this.pokemonService.attack(1);
           if (this.pokemonService.pokemon2.HP <= 0){
             this.addLog(this.pokemonService.pokemon2.name + " is dead !");
@@ -86,7 +83,8 @@ export class BattleComponent implements OnInit {
           }
           this.changeFighter();
         }
-        else{
+        else if (this.nowFighter === 2){
+          console.log("fighter 2 attacked");
           this.pokemonService.attack(2);
           if (this.pokemonService.pokemon1.HP <= 0){
             this.addLog(this.pokemonService.pokemon1.name + " is dead !")

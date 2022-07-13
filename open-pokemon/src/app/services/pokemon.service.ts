@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 import {API_URL} from "../../environments/environment";
 import { PokemonDocument } from "../../../../api-back/pokemon.model"
 @Injectable({
-  providedIn: 'root' // Explain to angular that this service is used once for the whole app
+  providedIn: 'root'
 })
 export class PokemonService{
 
@@ -30,33 +30,19 @@ export class PokemonService{
         return this.http.get<PokemonDocument>(API_URL + '/api/pokemon/pokemonId/' + pokemonId);
     }
 
-    // actionToPokemonById(pokemonId: string, actionToPokemon: 'increaseDamage' | 'reduceDamage'): void{
-    //   const pokemon = this.getPokemonById(pokemonId).subscribe((res));
-    //   actionToPokemon === 'increaseDamage' ? pokemon.nb_damaged++ : pokemon.nb_damaged--;
-    // }
-
-    // reducePokemonHP(pokemon: PokemonDocument, damage: number): void{
-    //   pokemon.HP--;
-    // }
-
     attack(fighterIndex:number): void{
-        const pok_fighter: PokemonDocument = fighterIndex === 1 ? this.pokemon1 : this.pokemon2;
-        const pok_damaged: PokemonDocument = pok_fighter.id === this.pokemon1.id ? this.pokemon2 : this.pokemon1;
 
-        /* Default Specific attack - defense battle */
-        if (pok_fighter.name=="pikachu" && pok_damaged.name=="salamech"){
-            pok_fighter.speed += 2;
+        if (fighterIndex === 1){
+            const tmp = this.attackTypeAdvantage(this.pokemon1, this.pokemon2);
+            this.pokemon2.HP -= tmp;
+            console.log("pok 1 attack " + tmp + "damage to pok2 have " + this.pokemon2.HP + "HP")
         }
-        else if (pok_fighter.name==="bulbizarre" && pok_damaged.name==="pikachu"){
-            pok_damaged.speed += 2;
+        else if (fighterIndex === 2){
+            const tmp = this.attackTypeAdvantage(this.pokemon2, this.pokemon1);
+            this.pokemon1.HP -= tmp;
+            console.log("pok 2 attack " + tmp + "damage to pok1  have " + this.pokemon1.HP + "HP")
         }
 
-        // pok_damaged take a beating
-        pok_damaged.HP -= this.attackTypeAdvantage(pok_fighter, pok_damaged);
-
-        // Update the two pokemons datas in DB
-        this.pokemon1 = fighterIndex === 1 ? pok_fighter : pok_damaged;
-        this.pokemon2 = this.pokemon1.id === pok_fighter.id ? pok_damaged : pok_fighter;
     }
 
     attackTypeAdvantage(pok1:PokemonDocument, pok2:PokemonDocument): number{

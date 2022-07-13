@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Pokemon} from "../pokemon/pokemon.model";
 import {PokemonService} from "../services/pokemon.service";
 import {Router} from "@angular/router";
 import { PokemonDocument } from '../../../../api-back/pokemon.model';

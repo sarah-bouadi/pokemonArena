@@ -24,14 +24,12 @@ import { HttpClientModule} from "@angular/common/http";
     MenuComponent,
     BattleComponent,
     PokemonFighterComponent
-
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-
     ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' }

@@ -8,7 +8,6 @@ import {BattleComponent} from "./battle/battle.component";
 const routes: Routes = [
   { path: 'pokemons', component: PokemonListComponent},
   { path: 'menu', component: MenuComponent},
-  // { path: 'battleField', component: BattleComponent},
   { path: `battleField/pokemonfighter1/:pokemonfighter1/pokemonfighter2/:pokemonfighter2`, component: BattleComponent},
   { path: '', component: LandingPageComponent}
 ]
