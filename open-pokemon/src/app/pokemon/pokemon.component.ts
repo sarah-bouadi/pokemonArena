@@ -49,12 +49,15 @@ export class PokemonComponent implements OnInit {
 
   onSelectPokemon(pokemon: PokemonDocument) {
     if (this.pokemonIndex === 1) {
+      console.log(pokemon);
       this.pokemonService.setPokemon1(pokemon);
       // this.onChangePokemonStyle()
-      console.log("first pokemon " + this.pokemonService.pokemon1._id);
+      // console.log("first pokemon " + this.pokemonService.pokemon1._id);
     } else if (this.pokemonIndex === 2) {
+      console.log(pokemon);
+
       this.pokemonService.setPokemon2(pokemon);
-      console.log("second pokemon " + this.pokemonService.pokemon2._id);
+      // console.log("second pokemon " + this.pokemonService.pokemon2._id);
       // this.onChangePokemonStyle()
     } else {
       console.log("Incorrect index, received : " + this.pokemonIndex);
